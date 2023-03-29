@@ -1,4 +1,4 @@
-name: Deployement
+name: Dev Corner
 
 on:
   push:
@@ -12,18 +12,22 @@ jobs:
     runs-on: self-hosted
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     
-    - name: Copy Files
-      run: rsync -a /root/actions-runner-dc/_work/dc-new/dc-new/ /var/www/dc-new/
+    
       
-    - name: Install Depencdencies
-      run: npm install --prefix /var/www/dc-new
-    
+      #- name: Create Build
+      #run: npm run build
+      
+    - name: Copy Files
+      run: rsync -a /root/actions-runner-/workflows/dc-new/dc-new/ /var/www/dc-new/   
+
     - name: Give Permission
       run: chmod -R 775 /var/www/dc-new/
-
-
+      
+    - name: Install Depencdencie
+      run: npm install --prefix /var/www/dc-new
+      
     # Add a test script to composer.json, for instance: "test": "vendor/bin/phpunit"
     # Docs: https://getcomposer.org/doc/articles/scripts.md
 
