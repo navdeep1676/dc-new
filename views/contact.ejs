@@ -1,16 +1,17 @@
 <%- include('./layout/header.ejs',
 {title:'Contact us',description:'gdgfgfdgfd',img:'',kw:''})%>
 
- <section class="contact-wrapper-1 py-5 pt-0 mt-5">
+ <section class="contact-wrapper-1 home-wrapper-2 py-5 ">
         <div class="container-xxl">
           <div class="row">
             <div class="col-12">
-              <h1 class="heading mb-4 text-center">
-                <span style=" color: #000 ">Contact </span>
-                <span style=" color: rgb(245, 141, 28) ">Us</span>
-              </h1>
+                <h4 class="text-center  mb-3" style="color:#00d263!important">Contact Us</h4>
+                <h5 class="text-center">We are here for you!</h5>
+
+                </p>
             </div>
-          </div>
+
+        </div>
           <div class="row pt-4">
             <div class="col-12 col-lg-6">
               <div class="address card h-100 p-3">
@@ -75,29 +76,29 @@
             </div>
             <div class="col-12 col-lg-6">
               <div class="contact-wrapper card p-3">
-                <form action="">
-                    <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="floatingInput1" placeholder="Your Name">
+                <form action="" id="contact_form">
+                    <div class="form-floating mt-3">
+                        <input type="text" class="form-control" id="floatingInput1" name="name" placeholder="Your Name">
                         <label for="floatingInput1">Name</label>
                       </div>
-                      <div class="form-floating mb-3">
-                        <input type="email" class="form-control" id="floatingInput2" placeholder="name@example.com">
+                      <div class="form-floating mt-3">
+                        <input type="email" class="form-control" id="floatingInput2" name="email" placeholder="name@example.com">
                         <label for="floatingInput2">Email address</label>
                       </div>
-                      <div class="form-floating mb-3">
-                        <input type="number" class="form-control" id="floatingInput3" placeholder="+91 ********** ">
+                      <div class="form-floating mt-3">
+                        <input type="number" class="form-control" id="floatingInput3" name="mobile" placeholder="+91 ********** ">
                         <label for="floatingInput3">Mobile No</label>
                       </div>
-                      <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="floatingInput4" placeholder="subject">
+                      <div class="form-floating mt-3">
+                        <input type="text" class="form-control" id="floatingInput4" name="subject" placeholder="subject">
                         <label for="floatingInput4">Subject</label>
                       </div>
-                      <div class="form-floating">
-                        <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
+                      <div class="form-floating mt-3">
+                        <textarea class="form-control" placeholder="Leave a comment here" name="comment" id="floatingTextarea2" style="height: 100px"></textarea>
                         <label for="floatingTextarea2">Comments</label>
                       </div>
                      <div class="mt-3">
-                        <button class="button py-2 px-3">Save</button>
+                        <button class="button-2 py-2 px-3">Save</button>
                      </div>
 
                 </form>
@@ -108,3 +109,137 @@
       </section>
 
 <%- include('./layout/footer.ejs') %>
+<script src="/js/jquery.validate.min.js"></script>
+<script src="/js/additional-methods.min.js"></script>
+<script>
+  $('#name').on('input', function() {
+        this.value = this.value.replace(/[^a-zA-Z\'\-]/g, '');
+        if ($(this).value != "") {
+            $('#contact_form').valid()
+        }
+    });
+  
+
+
+    $.validator.addMethod(
+        "regex",
+        function(value, element, regexp) {
+            return this.optional(element) || regexp.test(value);
+        },
+        "Please enter valid mobile number"
+    );
+    $.validator.addMethod("alpha", function(value, element) {
+        return this.optional(element) || value == value.match(/^[A-Za-z\'\s\-]+$/);
+    });
+    $.validator.addMethod("validate_email", function(value, element) {
+
+        if (/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(value)) {
+            return true;
+        } else {
+            return false;
+        }
+    }, "Please enter a valid email address.");
+
+$("#contact_form").validate({
+        rules: {
+            name: {
+                maxlength: 30,
+                alpha: true,
+                required: {
+
+                    depends: function() {
+                        $(this).val($.trim($(this).val()));
+                        return true;
+                    }
+                },
+            },
+            email: {
+                validate_email: true,
+
+                required: {
+                    depends: function() {
+                        $(this).val($.trim($(this).val()));
+                        return true;
+                    }
+                },
+            },
+           mobile: {
+                minlength: 10,
+                maxlength: 10,
+                regex: /^[0]?[6789]\d{9}$/,
+                required: {
+                    depends: function() {
+                        $(this).val($.trim($(this).val()));
+                        return true;
+                    }
+                }
+            },
+            subject: {
+                maxlength: 30,
+                alpha: true,
+                required: {
+
+                    depends: function() {
+                        $(this).val($.trim($(this).val()));
+                        return true;
+                    }
+                },
+            },
+          
+            comment: {
+                required: !0,
+                normalizer: function(value) {
+                    return $.trim(value);
+                }
+
+            }
+        },
+        messages: {
+            mobile: {
+                required: "Mobile number is required",
+                minlength: "Please enter valid mobile number",
+                maxlength: "Please enter valid mobile number"
+            },
+            name: {
+                alpha: "Only hyphen, apostrophe,space and characters are allowed"
+            },
+            
+        },
+
+        errorClass: "help-block error",
+        onkeyup: function() {
+            if ($('#contact_form').valid()) {
+                $(".submit").removeAttr('disabled');
+            } else {
+                $(".submit").attr('disabled', true);
+
+            }
+        },
+        highlight: function(e) {
+            $(e).closest(".form-floating").addClass("has-error");
+        },
+        unhighlight: function(e) {
+            $(e).closest(".form-floating").removeClass("has-error");
+        },
+        errorPlacement: function(error, element) {
+            error.insertAfter(element.closest('div'));
+        },
+        submitHandler: function(form) {
+            $(form).ajaxSubmit({
+                url: base_url + 'contact/ajax_save_contact_us',
+                type: "POST",
+                dataType: 'json',
+                success: function(data) {
+                    if (data.status == 'true') {
+                        $('#contact_form')[0].reset();
+
+
+                        window.location.href = '<?= base_url() ?>contact/success'
+                    }
+                }
+            });
+        }
+
+    });
+
+</script>

@@ -1,5 +1,6 @@
-<div class="container-xxl">
-    <footer class="py-5">
+<div class="footer">
+  <div class="container-xxl">
+    <footer class="pt-5">
       <div class="row">
         <div class="col-2">
           <h5>Section</h5>
@@ -41,29 +42,34 @@
             <div class="d-flex w-100 gap-2">
               <label for="newsletter1" class="visually-hidden">Email address</label>
               <input id="newsletter1" type="text" class="form-control" placeholder="Email address">
-              <button class="btn btn-primary" type="button">Subscribe</button>
+              <button class="button" type="button">Subscribe</button>
             </div>
           </form>
         </div>
       </div>
   
-      <div class="d-flex justify-content-between py-4 my-4 border-top">
-        <p class="">&copy; 2021 Company, Inc. All rights reserved.</p>
+      <div class="d-flex justify-content-between py-4 mt-4 border-top">
+        <p class="">&copy; <span class="date"></span> Developer's Corner. All rights reserved.</p>
         <ul class="list-unstyled d-flex">
-          <li class="ms-3"><a class="link-dark" target="_blank" href="https://www.linkedin.com/in/navdeep-dahiya-719016186/"><img width="24" height="24" src="/images/linkedin.svg" alt=""></a></li>
-          <li class="ms-3"><a class="link-dark" target="_blank" href="https://www.instagram.com/heartblack1676/"><img width="24" height="24" src="/images/instagram.png" alt=""></a></li>
-          <li class="ms-3"><a class="link-dark" target="_blank" href="https://www.youtube.com/channel/UCMpTo3mICR8qJJhby-aqFvA"><img width="24" height="24" src="/images/youtube.svg" alt=""></a></li>
-          <li class="ms-3"><a class="link-dark" target="_blank" href="https://www.buymeacoffee.com/monud0232"><img width="24" height="24" src="/images/buymeacoffe.svg" alt=""></a></li>
+          <li class="ms-3"><a class="link-dark bg-white" target="_blank" href="https://www.linkedin.com/in/navdeep-dahiya-719016186/"><img width="24" height="24" src="/images/linkedin.svg" alt=""></a></li>
+          <li class="ms-3"><a class="link-dark bg-white" target="_blank" href="https://www.instagram.com/heartblack1676/"><img width="24" height="24" src="/images/instagram.png" alt=""></a></li>
+          <li class="ms-3"><a class="link-dark bg-white" target="_blank" href="https://www.youtube.com/channel/UCMpTo3mICR8qJJhby-aqFvA"><img width="24" height="24" src="/images/youtube.svg" alt=""></a></li>
+          <li class="ms-3"><a class="link-dark bg-white" target="_blank" href="https://www.buymeacoffee.com/monud0232"><img width="24" height="24" src="/images/buymeacoffe.svg" alt=""></a></li>
 
         </ul>
       </div>
     </footer>
   </div>
+</div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/js/bootstrap.min.js"></script>
 <script
   src="https://code.jquery.com/jquery-3.6.4.min.js"
   integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8="
   crossorigin="anonymous"></script>
+  <script>
+ var date=new Date().getFullYear()
+        $('.date').text(date)
+  </script>
 </body>
 </html>
