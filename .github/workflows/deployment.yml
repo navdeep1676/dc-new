@@ -1,4 +1,4 @@
-name: Dev Corner
+name: deployment
 
 on:
   push:
