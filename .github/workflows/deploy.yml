@@ -15,7 +15,7 @@ jobs:
     - uses: actions/checkout@v2
     
     - name: Copy Files
-      run: rsync -a /root/actions-runner-dc/_work/dc-new/dc-new/ /var/www/dc-new/
+      run: rsync -a /root/actions-runner-devcorner/_work/dc-new/dc-new/ /var/www/dc-new/
       
     - name: Install Depencdencies
       run: npm install --prefix /var/www/dc-new
