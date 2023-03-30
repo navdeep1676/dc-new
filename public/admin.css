@@ -1,0 +1,10 @@
+.login_page{
+    width: 100%;
+    height: 100vh;
+    background-image: linear-gradient(270deg,rgba(210,0,127,0.75) 0%,rgba(31,77,224,0.75) 100%),url(https://demo1.divilms.com/divi-learndash/wp-content/uploads/sites/2/2019/08/advice-advise-advisor-7096.jpg)!important;
+}
+.login_page form{
+background-color: #26245b!important;
+padding: 30px;
+border-radius: 10px;
+}
