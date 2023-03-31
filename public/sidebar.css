@@ -67,7 +67,26 @@ body {
     overflow-y: auto;
   }
   .listing{
-    overflow-y: scroll;
+    overflow-y: auto;
     overflow-x: hidden;
     height: calc(100vh - 100px);
   }
+  /* width */
+ .listing::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+ .listing::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+ .listing::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+ .listing::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
