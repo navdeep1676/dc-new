@@ -12,3 +12,9 @@ border-radius: 10px;
     color: red;
     font-size: 12px;
 }
+main{
+    width: calc(100vw - 280px);
+}
+.navbar{
+    height: 74px;
+}
