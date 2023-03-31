@@ -66,3 +66,8 @@ body {
   .scrollarea {
     overflow-y: auto;
   }
+  .listing{
+    overflow-x: scroll;
+    overflow-y: hidden;
+    height: calc(100vh - 100px);
+  }
