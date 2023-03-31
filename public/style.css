@@ -89,11 +89,11 @@ a {
 .home-wrapper-2{
 background-color: #f3f6fd!important;
 }
-.home-wrapper-2 h4{
+.home-wrapper-2 h3{
 color:  #1f4de0!important;
 font-weight: bold;
 }
-.home-wrapper-2 h5{
+.home-wrapper-2 h4{
   font-size: 32px;
   font-weight: 700;
   letter-spacing: 1px;
@@ -192,7 +192,7 @@ margin-top: 25px;
 .footer{
   background-color: #26245b!important;
 }
-.footer h5,.footer a,.footer p{
+.footer h4,.footer a,.footer p{
   color: white !important;
 }
 

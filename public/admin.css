@@ -8,3 +8,7 @@ background-color: #26245b!important;
 padding: 30px;
 border-radius: 10px;
 }
+.error{
+    color: red;
+    font-size: 12px;
+}

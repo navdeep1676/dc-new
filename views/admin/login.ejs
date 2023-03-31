@@ -5,19 +5,19 @@
 <div class="row">
     <div class="col-12 d-flex justify-content-center align-items-center" style="height: 100vh;">
         <div class="w-25">
-            <form action="">
+            <form action="" id="login_form">
                 <img src="/images/logo.png" class="d-block mx-auto"  width="90" height="90" alt="logo">
                 <p class="my-4 text-white text-center">Login As Admin</p>
-                <div class="mb-3">
+                <div class="mt-3 form-group">
                     <label for="" class="form-label text-white">Email</label>
-                    <input type="email" class="form-control" name="" id="" aria-describedby="emailHelpId" placeholder="abc@mail.com">
+                    <input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelpId" placeholder="abc@mail.com">
                   </div>
-                  <div class="mb-3">
+                  <div class="mt-3 form-group">
                     <label for="" class="form-label text-white">Password</label>
-                    <input type="password" class="form-control" name="" id="" placeholder="Enter Password">
+                    <input type="password" class="form-control" name="password" id="password" placeholder="Enter Password">
                   </div>
                   <div class="d-grid gap-2 mt-5">
-                    <button type="submit" name="" id="" class="btn btn-primary">Login</button>
+                    <button type="submit" name="" id="" class="btn btn-primary submit">Login</button>
                   </div>
             </form>
         </div>
@@ -27,3 +27,70 @@
 </main>
 
 <%- include('./layout/footer.ejs') %>
+<script src="/js/jquery.validate.min.js"></script>
+<script src="/js/additional-methods.min.js"></script>
+<script>
+   
+    $.validator.addMethod("validate_email", function(value, element) {
+
+        if (/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(value)) {
+            return true;
+        } else {
+            return false;
+        }
+    }, "Please enter a valid email address.");
+
+$("#login_form").validate({
+        rules: {
+           
+            email: {
+                validate_email: true,
+
+                required: {
+                    depends: function() {
+                        $(this).val($.trim($(this).val()));
+                        return true;
+                    }
+                },
+            },
+           password: {
+                minlength: 5,
+                maxlength: 10,
+                required: {
+                    depends: function() {
+                        $(this).val($.trim($(this).val()));
+                        return true;
+                    }
+                }
+            },
+         
+        },
+       
+        errorClass: "help-block error",
+        onkeyup: function() {
+            if ($('#login_form').valid()) {
+                $(".submit").removeAttr('disabled');
+            } else {
+                $(".submit").attr('disabled', true);
+
+            }
+        },
+        highlight: function(e) {
+            $(e).closest(".form-group").addClass("has-error");
+        },
+        unhighlight: function(e) {
+            $(e).closest(".form-group").removeClass("has-error");
+        },
+        errorPlacement: function(error, element) {
+            error.insertAfter(element.closest('div'));
+        },
+        submitHandler: function(form) {
+          let formData =new FormData(form)
+
+          return false
+           
+        }
+
+    });
+
+</script>
