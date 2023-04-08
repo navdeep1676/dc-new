@@ -40,6 +40,9 @@ app.use("/term-and-conditions", (req, res) => {
 app.use("/refund-policy", (req, res) => {
   res.render("return")
 })
+app.use("/shipping-and-delivery-policy", (req, res) => {
+  res.render("shipping")
+})
 app.use(notFound)
 app.use(errorHandler)
 
