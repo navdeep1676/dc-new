@@ -31,6 +31,15 @@ app.use(morgan('tiny'))
 app.use("/contact",contactRouter)
 app.use("/videos",videoRouter)
 app.use("/admin",adminAuthRouter)
+app.use("/privacy-policy", (req, res) => {
+  res.render("privacy")
+})
+app.use("/term-and-conditions", (req, res) => {
+  res.render("terms")
+})
+app.use("/refund-policy", (req, res) => {
+  res.render("return")
+})
 app.use(notFound)
 app.use(errorHandler)
 
