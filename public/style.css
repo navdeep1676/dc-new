@@ -233,6 +233,12 @@ margin-top: 25px;
   .wrapper-1 iframe{
     height: 300px !important;
   }
+  .wrapper-1 h1{
+    font-size: 24px;
+  }
+  .wrapper-1 h2{
+    font-size: 20px;
+  }
   .review-card{
     width: 100% !important;
   }
@@ -240,10 +246,10 @@ margin-top: 25px;
     width: 100% !important;
   }
   .home-wrapper-2 h4 {
-    font-size: 24px;
+    font-size: 20px;
 }
 .home-wrapper-2 .feature-card h3 {
-    font-size: 22px;
+    font-size: 20px;
 }
 .home-wrapper-1 p {
   font-size: 14px;
