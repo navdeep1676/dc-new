@@ -227,3 +227,42 @@ margin-top: 25px;
     }
 
 /* swiper */
+
+
+@media screen and (max-width:768px){
+  .wrapper-1 iframe{
+    height: 300px !important;
+  }
+  .review-card{
+    width: 100% !important;
+  }
+  .course_tarif{
+    width: 100% !important;
+  }
+  .home-wrapper-2 h4 {
+    font-size: 24px;
+}
+.home-wrapper-2 .feature-card h3 {
+    font-size: 22px;
+}
+.home-wrapper-1 p {
+  font-size: 14px;
+}
+.home-wrapper-2 p {
+  font-size: 14px;
+}
+.button-2 {
+  font-size: 14px;
+}
+.button {
+ 
+  font-size: 14px;
+
+}
+.footer p,.footer a{
+  font-size: 14px ;
+}
+.form-control{
+  font-size: 14px ;
+}
+}
