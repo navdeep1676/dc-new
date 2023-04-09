@@ -266,75 +266,8 @@
             <div class="col-12 mt-5">
                 <div class="videos-wrapper testimonials  rounded-3 p-2 p-md-5" style="background-color: #f3f6fd;">
                     <div class="swiper mySwiper2 pb-5">
-                        <div class="swiper-wrapper">
-                            <div class="swiper-slide bg-transparent pb-4 rounded-3">
-                                <div class="review-card d-flex flex-column" style="width: 90%;">
-                                    <div class="review p-4 rounded-1 " style="background-color: #1f4de0;">
-                                        <div class="knob" style="background-color: #1f4de0;"></div>
-                                        <p class="text-white text-start">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Incidunt ipsam distinctio voluptas inventore ipsum provident minus ex quas totam modi, repellendus dolores, eaque repellat nihil! Dolore, cupiditate esse? Magni, neque?</p>
-                                    </div>
-                                   <div class="reviewer d-flex gap-3 align-items-center justify-content-center justify-sm-content-start">
-                                    <div>
-                                        <img src="/images/user.png" style="width: 96px !important;height: 96px !important;" alt="">
-                                    </div>
-                                    <div>
-                                        <h5>Navdeep</h5>
-                                        <p>Learner</p>
-                                    </div>
-                                   </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide bg-transparent pb-4 rounded-3">
-                                <div class="review-card  d-flex flex-column" style="width: 90%;">
-                                    <div class="review p-4 rounded-1" style="background-color: #1f4de0;">
-                                        <div class="knob" style="background-color: #1f4de0;"></div>
-                                        <p class="text-white text-start">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Incidunt ipsam distinctio voluptas inventore ipsum provident minus ex quas totam modi, repellendus dolores, eaque repellat nihil! Dolore, cupiditate esse? Magni, neque?</p>
-                                    </div>
-                                   <div class="reviewer d-flex gap-3 align-items-center justify-content-center justify-sm-content-start">
-                                    <div>
-                                        <img src="/images/user.png" style="width: 96px !important;height: 96px !important;" alt="">
-                                    </div>
-                                    <div>
-                                        <h5>Navdeep</h5>
-                                        <p>Learner</p>
-                                    </div>
-                                   </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide bg-transparent pb-4 rounded-3">
-                                <div class="review-card  d-flex flex-column" style="width: 90%;">
-                                    <div class="review p-4 rounded-1" style="background-color: #1f4de0;">
-                                        <div class="knob" style="background-color: #1f4de0;"></div>
-                                        <p class="text-white text-start">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Incidunt ipsam distinctio voluptas inventore ipsum provident minus ex quas totam modi, repellendus dolores, eaque repellat nihil! Dolore, cupiditate esse? Magni, neque?</p>
-                                    </div>
-                                   <div class="reviewer d-flex gap-3 align-items-center justify-content-center justify-sm-content-start">
-                                    <div>
-                                        <img src="/images/user.png" style="width: 96px !important;height: 96px !important;" alt="">
-                                    </div>
-                                    <div>
-                                        <h5>Navdeep</h5>
-                                        <p>Learner</p>
-                                    </div>
-                                   </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide bg-transparent pb-4 rounded-3">
-                                <div class="review-card  d-flex flex-column" style="width: 90%;">
-                                    <div class="review p-4 rounded-1" style="background-color: #1f4de0;">
-                                        <div class="knob" style="background-color: #1f4de0;"></div>
-                                        <p class="text-white text-start">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Incidunt ipsam distinctio voluptas inventore ipsum provident minus ex quas totam modi, repellendus dolores, eaque repellat nihil! Dolore, cupiditate esse? Magni, neque?</p>
-                                    </div>
-                                   <div class="reviewer d-flex gap-3 align-items-center">
-                                    <div>
-                                        <img src="/images/user.png" style="width: 96px !important;height: 96px !important;" alt="">
-                                    </div>
-                                    <div>
-                                        <h5>Navdeep</h5>
-                                        <p>Learner</p>
-                                    </div>
-                                   </div>
-                                </div>
-                            </div>
+                        <div class="swiper-wrapper" id="review-data">
+                           
                         
                         </div>
                         <div class="swiper-pagination"></div>
@@ -457,4 +390,34 @@
         },
       },
     });
+
+
+    // Get All Review
+
+let reviewElement=document.querySelector("#review-data")
+$.ajax({
+  method: "GET",
+  url: "http://localhost:4000/review/",
+})
+  .done(function( data ) {
+    data.getAllReview.forEach(element => {
+       reviewElement.innerHTML+= ` <div class="swiper-slide bg-transparent pb-4 rounded-3">
+                                <div class="review-card  d-flex flex-column" style="width: 90%;">
+                                    <div class="review p-4 rounded-1" style="background-color: ${element?.color ? element?.color : "#1f4de0"} ;">
+                                        <div class="knob" style="background-color: ${element?.color ? element?.color : "#1f4de0"} ;"></div>
+                                        <p class="text-white text-start">${element?.comment ? element?.comment : "NA"}</p>
+                                    </div>
+                                   <div class="reviewer d-flex gap-3 align-items-center">
+                                    <div>
+                                        <img src=${element?.reviwerImage ? element?.reviwerImage : "/images/user.png"}  style="width: 96px !important;height: 96px !important;" alt="">
+                                    </div>
+                                    <div>
+                                        <h5>${element?.name ? element?.name : "Anonymus"}</h5>
+                                        <p>${element?.post ? element?.post : "User"}</p>
+                                    </div>
+                                   </div>
+                                </div>
+                            </div>` 
+    });
+  });
 </script>

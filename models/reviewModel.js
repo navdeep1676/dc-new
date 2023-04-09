@@ -1,28 +1,29 @@
 const mongoose = require('mongoose'); // Erase if already required
 
 // Declare the Schema of the Mongo model
-var contactSchema = new mongoose.Schema({
+var reviewSchema = new mongoose.Schema({
     name:{
         type:String,
         required:true,
+        index:true,
     },
-    email:{
+    post:{
         type:String,
         required:true,
     },
-    mobile:{
+    reviwerImage:{
         type:String,
-        required:true,
-    },
-    subject:{
-        type:String,
-        required:true,
     },
     comment:{
         type:String,
         required:true,
     },
+    color: {
+        type: String,
+        required: true,
+    }
+   
 },{timestamps:true});
 
 //Export the model
-module.exports = mongoose.model('Contact', contactSchema);
+module.exports = mongoose.model('Review', reviewSchema);

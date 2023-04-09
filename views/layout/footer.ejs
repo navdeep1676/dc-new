@@ -31,13 +31,15 @@
         </div>
   
         <div class="col-12 col-md-4 ms-0 ms-md-4 mt-4 mt-md-0">
-          <form class="">
+          <form class=""id='newsletter'>
             <h5 class="text-white">Subscribe to our newsletter</h5>
             <p class="mt-3 mt-md-5">Monthly digest of whats new and exciting from us.</p>
             <div class="d-flex w-100 gap-2">
+             <form action="" id="newsletter">
               <label for="newsletter1" class="visually-hidden">Email address</label>
-              <input id="newsletter1" type="text" class="form-control" placeholder="Email address">
-              <button class="button" type="button">Subscribe</button>
+              <input id="newsletter1" name="email" type="email" class="form-control" placeholder="Email address">
+              <button class="button" type="submit">Subscribe</button>
+             </form>
             </div>
           </form>
         </div>
@@ -51,14 +53,46 @@
   </div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/js/bootstrap.min.js"></script>
 <script
   src="https://code.jquery.com/jquery-3.6.4.min.js"
   integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8="
   crossorigin="anonymous"></script>
+  <script src="/js/jquery.toast.min.js"></script>
   <script>
  var date=new Date().getFullYear()
-        $('.date').text(date)
+ $('.date').text(date)
+
+
+
+ $(document).ready(function(){
+  $("form#newsletter").submit(function(e){
+    e.preventDefault()
+    const formData = new FormData(e.target);
+    
+    $.ajax({
+  method: "POST",
+  url: "http://localhost:4000/newsletter/",
+  data: { email: formData.get("email") },
+  success: function (data) {
+    $.toast({
+    heading: 'Success',
+    text: `You just subscribed to Developer's Corner`,
+    showHideTransition: 'slide',
+    icon: 'success', stack: 2
+})
+          },
+          error: function (xhr, exception) {
+            $.toast({
+    heading: 'Warning',
+    text: 'You have already subscribed.',
+    showHideTransition: 'slide',
+    icon: 'error', stack: 2
+})
+}
+  });})
+});
   </script>
 </body>
 </html>

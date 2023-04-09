@@ -8,7 +8,10 @@ const app = express();
 const dotenv=require('dotenv').config()
 const contactRouter=require('./routes/contact')
 const videoRouter = require('./routes/video')
-const adminAuthRouter=require('./routes/adminauth')
+const adminAuthRouter=require('./routes/adminauth');
+const reviewRouter = require("./routes/review");
+const newsletterRouter = require("./routes/newsletter");
+const howRouter = require("./routes/howto");
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended:false}))
@@ -30,7 +33,10 @@ app.use(morgan('tiny'))
 
 app.use("/contact",contactRouter)
 app.use("/videos",videoRouter)
-app.use("/admin",adminAuthRouter)
+app.use("/admin", adminAuthRouter)
+app.use('/review', reviewRouter)
+app.use('/newsletter',newsletterRouter)
+app.use('/documentation',howRouter)
 app.use("/privacy-policy", (req, res) => {
   res.render("privacy")
 })

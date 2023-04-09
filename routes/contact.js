@@ -1,8 +1,8 @@
 const express = require('express');
-const { showContact } = require('../controllers/contactCtrl');
+const { showContact, postContact } = require('../controllers/contactCtrl');
 const router = express.Router()
 
 
-router.get('/',showContact)
+router.get('/',showContact).post('/',postContact)
 
 module.exports = router;
