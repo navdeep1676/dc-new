@@ -27,7 +27,7 @@ const getAVideo = async (req, res) => {
   const { slug } = req.params;
   try {
     const getAVideoData = await Video.findOne({ slug: slug });
-    res.json({
+    res.render("videodetail",{
       status: true,
       code: "VIDEO_FOUND",
       msg: "Video Found Successfully!",

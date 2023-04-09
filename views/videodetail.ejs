@@ -1,5 +1,5 @@
 <%- include('./layout/header.ejs',
-{title:'Contact us',description:'gdgfgfdgfd',img:'',kw:''})%>
+{title:'Video Details',description:'gdgfgfdgfd',img:'',kw:''})%>
 <section class="video-wrapper-1 home-wrapper-2  py-5">
     <div class="container-xxl">
       <div class="row">
@@ -11,18 +11,7 @@
 
     </div>
       <div class="row  pt-4">
-        <% for( let index = 0; index < data.length; index++ ) { %>
-            <div class="d-block col-12 col-sm-6 col-lg-4 mt-4 mt-lg-4">
-                <div class="card" style="width:100%;">
-                    <img src="<%= data[index].image.url %>" height="350" class="card-img-top" alt="...">
-                    <div class="card-body">
-                      <h5 class="text-decoration-none cursor-pointer"><%= data[index].title %></h5>
-                      <p class="text-decoration-none cursor-pointer"><%= data[index].desc %></p>
-                      <a href="#" class="button mt-4">Go somewhere</a>
-                    </div>
-                  </div>
-            </div>
-        <% } %>
+       
        
         
       </div>
