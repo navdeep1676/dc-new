@@ -12,6 +12,7 @@ const adminAuthRouter=require('./routes/adminauth');
 const reviewRouter = require("./routes/review");
 const newsletterRouter = require("./routes/newsletter");
 const howRouter = require("./routes/howto");
+const projectRouter = require("./routes/projectRoute");
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended:false}))
@@ -36,7 +37,8 @@ app.use("/videos",videoRouter)
 app.use("/admin", adminAuthRouter)
 app.use('/review', reviewRouter)
 app.use('/newsletter',newsletterRouter)
-app.use('/documentation',howRouter)
+app.use('/documentation', howRouter)
+app.use('/project',projectRouter)
 app.use("/privacy-policy", (req, res) => {
   res.render("privacy")
 })

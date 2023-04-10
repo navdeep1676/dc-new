@@ -13,8 +13,36 @@ border-radius: 10px;
     font-size: 12px;
 }
 main{
-    width: calc(100vw - 280px);
 }
 .navbar{
     height: 73px;
 }
+.button {
+    background-color: #00d363 !important;
+    padding: 12px 15px;
+    color: white !important;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 600;
+    border: 2px solid transparent;
+    border-radius: 15px;
+    display: inline-block;
+    height: auto !important;
+  }
+  .button:hover {
+    background-color: transparent !important;
+    border: 2px solid #00d363 !important;
+    color: white !important;
+  }
+  .button-2 {
+    background-color: #1f4de0 !important;
+    padding: 12px 15px;
+    color: white !important;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 600;
+    border: 2px solid transparent;
+    border-radius: 30px;
+    display: inline-block;
+    height: auto !important;
+  }

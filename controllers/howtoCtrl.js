@@ -1,6 +1,13 @@
 const asyncHandler = require('express-async-handler')
 const Howto = require("../models/howtoModel")
-const slugify=require("slugify")
+const slugify = require("slugify")
+
+// index admin docs
+
+const indexAdminDocs = asyncHandler(async (req, res) => {
+    res.render("admin/addDocumentation")
+})
+
 
 // Create a how To
 
@@ -51,4 +58,4 @@ const getAllHowTo = asyncHandler(async (req, res) => {
 
 
 
-module.exports={createHowTo,getAHowTo,getAllHowTo}
+module.exports={createHowTo,getAHowTo,getAllHowTo,indexAdminDocs}

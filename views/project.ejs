@@ -1,0 +1,31 @@
+<%- include('./layout/header.ejs',
+{title:'Projects',description:'gdgfgfdgfd',img:'',kw:''})%>
+<section class="video-wrapper-1 home-wrapper-2  py-5">
+    <div class="container-xxl">
+      <div class="row">
+        <div class="col-12">
+            <h4 class="text-center  mb-3" style="color:#00d263!important">Projects</h4>
+            <h5 class="text-center">Browse for Learn More!</h5>
+            </p>
+        </div>
+
+    </div>
+      <div class="row  pt-4">
+        <% for( let index = 0; index < project.length; index++ ) { %>
+            <div class="d-block col-12 col-sm-6 col-lg-4 mt-4 mt-lg-4">
+                <div class="card" style="width:100%;">
+                    <img src="<%= project[index].images[0] %>" height="350" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h5 class="text-decoration-none cursor-pointer"><%= project[index].title %></h5>
+                      <p class="text-decoration-none cursor-pointer"><%= project[index].desc %></p>
+                      <a href="/project/<%= project[index].slug %>" class="button mt-4">Go Somewhere</a>
+                    </div>
+                  </div>
+            </div>
+        <% } %>
+       
+        
+      </div>
+    </div>
+</section>
+<%- include('./layout/footer.ejs') %>

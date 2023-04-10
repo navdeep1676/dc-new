@@ -6,7 +6,8 @@ const howRouter = express.Router()
 
 howRouter.post("/", createHowTo)
             .get("/",getAllHowTo)
-            .get("/:slug", getAHowTo)
+    .get("/:slug", getAHowTo)
+            
 
 
 

@@ -12,7 +12,7 @@ body {
     height: -webkit-fill-available;
     max-height: 100vh;
     overflow-x: auto;
-    overflow-y: hidden;
+    
   }
   
   .dropdown-toggle { outline: 0; }
