@@ -1,0 +1,27 @@
+<%- include('./layout/header.ejs',
+{title:'Projects',description:'gdgfgfdgfd',img:'',kw:''})%>
+<section class="video-wrapper-1 home-wrapper-2  py-5">
+    <div class="container-xxl">
+      <div class="row">
+        <div class="col-12">
+            <h4 class="text-center  mb-3" style="color:#00d263!important">Videos</h4>
+            <h5 class="text-center">Browse for Learn More!</h5>
+            </p>
+        </div>
+
+    </div>
+      <div class="row  pt-4">
+        <div class="col-4">
+         <% tutorialsTopics.forEach(element => { %>
+          <a class="d-block" href="/tutorials/<%- element.tutorialCategory %>/<%- element.slug  %>"><%- element.topicName %></a>
+         <% }) %>
+        </div>
+      <div class="col-8">
+        <h1><%- data.title  %></h1>
+        <%- data.content  %>
+         
+      </div>
+      </div>
+    </div>
+</section>
+<%- include('./layout/footer.ejs') %>
