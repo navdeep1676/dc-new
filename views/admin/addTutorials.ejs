@@ -178,7 +178,7 @@ $("#docs_form").validate({
    
       $.ajax({
         method: "POST",
-        url: "http://localhost:4000/tutorials/post",
+        url: "https://developerscorner.in/tutorials/post",
         data: {
             title:formData.get("title"),
             tutorialCategory: formData.get("tutorialCategory"),
@@ -221,7 +221,7 @@ $("#docs_form").validate({
   let categoryElement=document.querySelector("#category-data")
 $.ajax({
   method: "GET",
-  url: "http://localhost:4000/tutorials/getAllTutsCat",
+  url: "https://developerscorner.in/tutorials/getAllTutsCat",
 })
   .done(function( data ) {
     
