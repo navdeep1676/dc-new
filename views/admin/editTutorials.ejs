@@ -79,16 +79,10 @@
 <script>
     var editor1 = new RichTextEditor("#div_editor1");
     $(".js-example-tokenizer").select2({
+        
         name:'content',
     tags: true,
-    insertTag: function (data, tag) {
-    // Insert the tag at the end of the results
-    data.push("<%= data.keywords %>");
-  },
-  placeholder: {
-    id: '-1', // the value of the option
-    text: 'Select an option'
-  },
+    placeholder: "Add Tags",
     allowClear: true
 })
 $("#file-1").fileinput({
