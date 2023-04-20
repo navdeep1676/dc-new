@@ -85,7 +85,10 @@
     // Insert the tag at the end of the results
     data.push("<%= data.keywords %>");
   },
-    placeholder: "Add Tags",
+  placeholder: {
+    id: '-1', // the value of the option
+    text: 'Select an option'
+  },
     allowClear: true
 })
 $("#file-1").fileinput({
