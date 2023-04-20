@@ -228,6 +228,10 @@
             icon: 'success',
             stack: 2
           })
+          setTimeout(() => {
+            $('#contact_form').trigger("reset");
+
+          }, 1000);
         },
         error: function (xhr, exception) {
           $.toast({
