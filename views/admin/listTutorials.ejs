@@ -37,7 +37,7 @@ function list(){
   let categoryElement=document.querySelector("#table_body")
 $.ajax({
   method: "GET",
-  url: "http://localhost:4000/tutorials/getAllTutorials",
+  url: base_url+"/tutorials/getAllTutorials",
 })
   .done(function( data ) {
     categoryElement.innerHTML=""
