@@ -1,4 +1,4 @@
 /node_modules
-/config/dbConnect.js
-/public/comman.js
+config/dbConnect.js
 
+public/js/comman.js
