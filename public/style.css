@@ -280,6 +280,8 @@ margin-top: 25px;
 
 .navigator{
   background-color: #6242bc !important;
+  position: sticky;
+  top: 100px;
 }
 .navigator a{
   color: white !important;
