@@ -14,7 +14,9 @@ a {
   text-decoration: none !important;
   color: black !important;
 }
-
+main{
+  margin-top: 66px;
+}
 
 .button {
   background-color: #00d363 !important;
@@ -31,7 +33,7 @@ a {
 .button:hover {
   background-color: transparent !important;
   border: 2px solid #00d363 !important;
-  color: white !important;
+  color: #00d363 !important;
 }
 .button-2 {
   background-color: #1f4de0 !important;
@@ -272,3 +274,41 @@ margin-top: 25px;
   font-size: 14px ;
 }
 }
+
+
+/* Tutorials part */
+
+.navigator{
+  background-color: #6242bc !important;
+}
+.navigator a{
+  color: white !important;
+  text-transform: capitalize;
+}
+.tut-info{
+  background-color: #26245b30 !important;
+}
+.tutorial p,.tutorial li{
+  font-size: 14px;
+}
+.tutorial h1{
+  color: #1f4de0!important ;
+  font-weight: bold;
+}
+.tutorial h3{
+  color: black !important;
+}
+.tutorial .badging{
+  color: crimson;
+  background-color: #f1f1f1;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+.tagname {
+  color: brown;
+}
+.tagname .arrow{
+  color: mediumblue;
+}
+
+/* Tutorials Part */

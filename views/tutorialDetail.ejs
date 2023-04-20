@@ -1,27 +1,27 @@
 <%- include('./layout/header.ejs',
-{title:'Projects',description:'gdgfgfdgfd',img:'',kw:''})%>
-<section class="video-wrapper-1 home-wrapper-2  py-5">
-    <div class="container-xxl">
-      <div class="row">
-        <div class="col-12">
-            <h4 class="text-center  mb-3" style="color:#00d263!important">Videos</h4>
-            <h5 class="text-center">Browse for Learn More!</h5>
-            </p>
-        </div>
-
-    </div>
+{title:data.title,description:data.topicName,img:'',kw:data.keywords})%>
+<main>
+  <section class="video-wrapper-1 home-wrapper-2  pb-5">
+    <div class="container-fluid">
       <div class="row  pt-4">
-        <div class="col-4">
-         <% tutorialsTopics.forEach(element => { %>
-          <a class="d-block" href="/tutorials/<%- element.tutorialCategory %>/<%- element.slug  %>"><%- element.topicName %></a>
-         <% }) %>
+        <div class="col-3">
+        <div class="navigator card p-2">
+          <% tutorialsTopics.forEach(element => { %>
+            <a class="d-block" href="/tutorials/<%- element.tutorialCategorySlug %>/<%- element.slug  %>"><%- element.topicName %></a>
+            <hr class="my-1 bg-white">
+           <% }) %>
         </div>
-      <div class="col-8">
-        <h1><%- data.title  %></h1>
-        <%- data.content  %>
-         
+        </div>
+      <div class="col-7">
+       
+          
+          <h3 class="mb-3 text-dark"><%- data.topicName  %></h1>
+        <section class="tutorial">
+          <%- data.content  %> 
+        </section>
       </div>
       </div>
     </div>
 </section>
+</main>
 <%- include('./layout/footer.ejs') %>

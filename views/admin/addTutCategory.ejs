@@ -1,0 +1,121 @@
+<link rel="stylesheet" href="/css/rte_theme_default.css" />
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" crossorigin="anonymous">
+<link href="/css/fileinput.css" media="all" rel="stylesheet" type="text/css"/>
+<style>
+    .kv-file-upload{
+        display: none !important;
+    }
+</style>
+
+<%- include('./layout/index.ejs') %>
+<div class="d-flex pb-5">
+    <%- include('./layout/sidebar.ejs') %>
+    <div class="flex-grow-1">
+        <%- include('./layout/navigation.ejs') %>
+        <main class="p-3 main-content pb-5">
+            <h1>Add Tutorials Category</h1>
+        
+        <form action="" id="docs_form" class="pb-5">
+            <div class="form-floating input-group  mt-3">
+                <input type="text" class="form-control" id="floatingInput1" name="title" placeholder="Your Name">
+                <label for="floatingInput1">Title</label>
+            </div>
+
+           
+            <div class="mt-3">
+                <button type="submit" class="button-2 py-2 px-3 submit">Save</button>
+            </div>
+        </form>
+    </main>
+    </div>
+</div>
+<%- include('./layout/footer.ejs') %>
+<script type="text/javascript" src="/js/rte.js"></script>
+<script>
+    RTE_DefaultConfig.url_base = 'richtexteditor'
+</script>
+<script type="text/javascript" src="/plugins/all_plugins.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script src="/js/plugins/buffer.min.js" type="text/javascript"></script>
+<script src="/js/plugins/filetype.min.js" type="text/javascript"></script>
+<script src="/js/plugins/piexif.js" type="text/javascript"></script>
+<script src="/js/plugins/sortable.js" type="text/javascript"></script>
+<script src="/js/fileinput.js" type="text/javascript"></script>
+    <script src="/js/locales/fr.js" type="text/javascript"></script>
+    <script src="/js/locales/es.js" type="text/javascript"></script>
+    <script src="/themes/fa5/theme.js" type="text/javascript"></script>
+    <script src="/themes/explorer-fa5/theme.js" type="text/javascript"></script>
+    <script src="/js/jquery.validate.min.js"></script>
+    <script src="/js/additional-methods.min.js"></script>
+<script>
+
+
+
+
+$("#docs_form").validate({
+    rules: {
+      title: {
+        maxlength: 150,
+        required: {
+
+          depends: function () {
+            $(this).val($.trim($(this).val()));
+            return true;
+          }
+        },
+      },
+     
+    },
+   
+
+    errorClass: "help-block error",
+    
+    highlight: function (e) {
+      $(e).closest(".form-floating").addClass("has-error");
+    },
+    unhighlight: function (e) {
+      $(e).closest(".form-floating").removeClass("has-error");
+    },
+    errorPlacement: function (error, element) {
+      error.insertAfter(element.closest('div.input-group'));
+    },
+    submitHandler: function (form,event) {
+     event.preventDefault()
+     const formData = new FormData(event.target);
+   
+      $.ajax({
+        method: "POST",
+        url: "http://localhost:4000/tutorials/postCategory",
+        data: {
+            title:formData.get("title"),
+
+        },
+        success: function (data) {
+          $.toast({
+            heading: 'Success',
+            text: `Your Query Submitted Successfully. Our Team will reach to you soon !!!`,
+            showHideTransition: 'slide',
+            icon: 'success',
+            stack: 2
+          })
+        },
+        error: function (xhr, exception) {
+          $.toast({
+            heading: 'Warning',
+            text: 'Something went wrong !!!',
+            showHideTransition: 'slide',
+            icon: 'error',
+            stack: 2
+          })
+        }
+      })
+     
+
+    }
+
+  });
+
+
+</script>
+

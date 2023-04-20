@@ -16,6 +16,10 @@ var tutorialSchema = new mongoose.Schema({
         type:String,
         required:true,
     },
+    tutorialCategorySlug: {
+        type:String,
+        required:true,
+    },
     topicName:{
         type:String,
         required:true,
@@ -25,6 +29,10 @@ var tutorialSchema = new mongoose.Schema({
         type:String,
         required:true,
     },
+    keywords: {
+       type:[],
+        required:true
+    }
 });
 
 //Export the model

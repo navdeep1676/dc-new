@@ -1,30 +1,42 @@
 <%- include('./layout/header.ejs',
 {title:'Projects',description:'gdgfgfdgfd',img:'',kw:''})%>
-<section class="video-wrapper-1 home-wrapper-2  py-5">
-    <div class="container-xxl">
+<main>
+  <section class="video-wrapper-1 home-wrapper-2  py-5">
+    <div class="container-fluid">
       <div class="row">
         <div class="col-12">
-            <h4 class="text-center  mb-3" style="color:#00d263!important">Projects</h4>
+            <h4 class="text-center  mb-3" style="color:#00d263!important">Tutorials</h4>
             <h5 class="text-center">Browse for Learn More!</h5>
             </p>
         </div>
 
     </div>
-      <div class="row  pt-4">
-        <% for( let index = 0; index < data.length; index++ ) { %>
-            <div class="d-block col-12 col-sm-6 col-lg-4 mt-4 mt-lg-4">
-                <div class="card" style="width:100%;">
-                    <img src="<%= data[index].tutcatimage %>" height="350" class="card-img-top" alt="...">
-                    <div class="card-body">
-                      <h5 class="text-decoration-none cursor-pointer"><%= data[index].title %></h5>
-                      <a href="/tutorials/<%= data[index].slug %>/introduction" class="button mt-4">Go Somewhere</a>
-                    </div>
-                  </div>
-            </div>
-        <% } %>
+      <div class="row  pt-4"id='category-data'>
        
-        
       </div>
     </div>
 </section>
+</main>
 <%- include('./layout/footer.ejs') %>
+<script>
+    let categoryElement=document.querySelector("#category-data")
+$.ajax({
+  method: "GET",
+  url: "http://localhost:4000/tutorials/getAllTutsCat",
+})
+  .done(function( data ) {
+    
+    data.data.forEach(element => {
+        console.log(element);
+        categoryElement.innerHTML+= `  <div class="d-block col-12 col-sm-6 col-lg-4 mt-4 mt-lg-4">
+                <div class="card" style="width:100%;">
+                    <img src="${element.tutcatimage}" height="350" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h5 class="text-decoration-none cursor-pointer">${element.title}</h5>
+                      <a href="/tutorials/${element.slug}/introduction" class="button mt-4">Go Somewhere</a>
+                    </div>
+                  </div>
+            </div>` 
+    });
+  });
+</script>

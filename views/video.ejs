@@ -1,14 +1,14 @@
 <%- include('./layout/header.ejs',
 {title:'Contact us',description:'gdgfgfdgfd',img:'',kw:''})%>
-<section class="video-wrapper-1 home-wrapper-2  py-5">
-    <div class="container-xxl">
+<main>
+  <section class="video-wrapper-1 home-wrapper-2  py-5">
+    <div class="container-fluid">
       <div class="row">
         <div class="col-12">
             <h4 class="text-center  mb-3" style="color:#00d263!important">Videos</h4>
             <h5 class="text-center">Browse for Learn More!</h5>
             </p>
         </div>
-
     </div>
       <div class="row  pt-4">
         <% for( let index = 0; index < data.length; index++ ) { %>
@@ -23,9 +23,8 @@
                   </div>
             </div>
         <% } %>
-       
-        
       </div>
     </div>
 </section>
+</main>
 <%- include('./layout/footer.ejs') %>

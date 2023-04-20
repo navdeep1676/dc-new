@@ -8,7 +8,17 @@ const fs = require("fs");
 
 
 
+// index add tutorial
 
+const indexAddTut = async (req, res) => {
+  res.render("admin/addTutorials")
+}
+
+// index add tut category
+
+const indexAddTutCategory = async (req, res) => {
+  res.render("admin/addTutCategory")
+}
 
 
 
@@ -48,11 +58,19 @@ const postTutorialCategory = async (req, res) => {
 
 // Post Tutorial
 const postTutorial = async (req, res) => {
-  console.log(req.body);
+  
   try {
     if (req.body.title) {
       req.body.slug = slugify(req.body.title.toLowerCase());
     }
+    if (req.body.tutorialCategory) {
+      req.body.tutorialCategorySlug=slugify(req.body.tutorialCategory.toLowerCase())
+    }
+    if (req.body.keywords) {
+      let data = JSON.parse(req.body.keywords)
+      req.body.keywords=data
+    }
+    console.log(req.body.keywords);
     const postTutorialData = await Tutorial.create(req.body);
     res.json({
       status: true,
@@ -69,11 +87,12 @@ const postTutorial = async (req, res) => {
 // Get A tutorial
 
 const getATutorial = async (req, res) => {
-  const { slug,type } = req.params;
+  const { slug, type } = req.params;
+  console.log(slug,type);
   try {
-      const getATutorialData = await Tutorial.findOne({ slug: slug, tutorialCategory: type });
-      const tutorialsTopics = await Tutorial.find({tutorialCategory:type}).select("topicName slug tutorialCategory").sort("createdAt");
-      console.log(getATutorialData);
+    const getATutorialData = await Tutorial.findOne({ slug: slug, tutorialCategorySlug: type });
+   
+      const tutorialsTopics = await Tutorial.find({tutorialCategorySlug:type}).select("topicName title slug  tutorialCategorySlug").sort("createdAt");
     res.render("tutorialDetail",{
       status: true,
       code: "TUTORIAL_FOUND",
@@ -90,17 +109,24 @@ const getATutorial = async (req, res) => {
     });
   }
 };
+
+
+// render tutorial cat
+const indexTutorials = async (req, res) => {
+   res.render("tutorials")
+ }
+
 const getAllTutorialCat = async (req, res) => {
   try {
     const getAllTutorialCatData = await TutorialCategory.find();
-    res.render("tutorials",{
+    res.json({
       status: true,
       code: "TUTORIAL_CAT_FOUND",
       msg: "Tutorials Category Found Successfully!",
       data: getAllTutorialCatData,
     });
   } catch (error) {
-    res.render("tutorials" ,{
+    res.json({
       status: false,
       code: "TUTORIAL_CAT_NOT_FOUND",
       msg: "Something went wrong! Please contact the site administrator.",
@@ -134,5 +160,8 @@ module.exports = {
     postTutorial,
     getATutorial,
     getAllTutorialCat,
-    deleteATutorial,
+  deleteATutorial,
+  indexAddTut,
+  indexAddTutCategory,
+  indexTutorials
   };
