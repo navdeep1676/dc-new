@@ -25,7 +25,7 @@
             <div class="form-floating input-group  mt-3">
                 <label for="category-data">Tutorial Category</label>
 
-                <select name="tutorialCategory" value="<%= data.tutorialCategory %>" class="form-control form-select" id="category-data">
+                <select name="tutorialCategory"  value="<%= data.tutorialCategory %>" class="form-control form-select" id="category-data">
                     <option value="">Select Category</option>
                 </select>
             </div>
@@ -223,7 +223,7 @@ $.ajax({
     
     data.data.forEach(element => {
         console.log(element);
-        categoryElement.innerHTML+= `<option value='${element.title}'>${element.title}</option>` 
+        categoryElement.innerHTML+= `<option value='${element.title}' ${element.title === "<%= data.tutorialCategory %>" && "selected"} >${element.title}</option>` 
     });
   });
 
