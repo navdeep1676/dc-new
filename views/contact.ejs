@@ -211,7 +211,7 @@
      const formData = new FormData(event.target);
       $.ajax({
         method: "POST",
-        url: "http://localhost:4000/contact/",
+        url: base_url+"contact/",
         data: {
           name:formData.get("name"),
           email: formData.get("email"),
