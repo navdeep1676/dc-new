@@ -14,7 +14,7 @@
     <div>
         <%- include('./layout/navigation.ejs') %>
         <main class="p-3 main-content pb-5">
-            <h1>Add Tutorials</h1>
+            <h1>Add Tutorial</h1>
         
         <form action="" id="docs_form" class="pb-5">
             <div class="form-floating input-group  mt-3">
@@ -74,6 +74,7 @@
     <script src="/js/jquery.validate.min.js"></script>
     <script src="/js/additional-methods.min.js"></script>
 <script>
+ 
     var editor1 = new RichTextEditor("#div_editor1");
     $(".js-example-tokenizer").select2({
         name:'content',
@@ -109,30 +110,17 @@ $("#docs_form").validate({
     rules: {
       title: {
         maxlength: 150,
-        required: {
+        required: !0
 
-          depends: function () {
-            $(this).val($.trim($(this).val()));
-            return true;
-          }
-        },
       },
       tutorialCategory: {
         maxlength: 150,
-        required: {
-          depends: function () {
-            $(this).val($.trim($(this).val()));
-            return true;
-          }
-        },
+        required: !0
+
       },
       topicName: {
-        required: {
-          depends: function () {
-            $(this).val($.trim($(this).val()));
-            return true;
-          }
-        }
+        required: !0
+
       }, "keywords[]": {
         required: !0,
         normalizer: function (value) {
@@ -178,7 +166,7 @@ $("#docs_form").validate({
    
       $.ajax({
         method: "POST",
-        url: "https://developerscorner.in/tutorials/post",
+        url: base_url+"/tutorials/post",
         data: {
             title:formData.get("title"),
             tutorialCategory: formData.get("tutorialCategory"),
@@ -190,11 +178,16 @@ $("#docs_form").validate({
         success: function (data) {
           $.toast({
             heading: 'Success',
-            text: `Your Query Submitted Successfully. Our Team will reach to you soon !!!`,
+            text: `Tutorial Added Successfully!`,
             showHideTransition: 'slide',
             icon: 'success',
             stack: 2
           })
+          setTimeout(() => {
+            $('#docs_form').trigger("reset");
+            window.location.href="/admin/list-tutorials"
+          }, 2000);
+
         },
         error: function (xhr, exception) {
           $.toast({
@@ -221,7 +214,7 @@ $("#docs_form").validate({
   let categoryElement=document.querySelector("#category-data")
 $.ajax({
   method: "GET",
-  url: "https://developerscorner.in/tutorials/getAllTutsCat",
+  url: base_url+"/tutorials/getAllTutsCat",
 })
   .done(function( data ) {
     

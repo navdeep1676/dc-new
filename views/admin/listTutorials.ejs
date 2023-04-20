@@ -1,0 +1,82 @@
+<link href="//cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
+<%- include('./layout/index.ejs') %>
+<div class="d-flex pb-5">
+    <%- include('./layout/sidebar.ejs') %>
+    <div class="flex-grow-1">
+        <%- include('./layout/navigation.ejs') %>
+        <main class="p-3 main-content pb-5">
+            <h1>List Tutorials</h1>
+        
+<table id="Table_ID">
+    <thead>
+      <tr>
+          <th>SNo.</th>
+          <th>Title</th>
+          <th>Action</th>
+      </tr>
+    </thead>
+    <tbody id="table_body">
+     
+    </tbody>
+  </table>
+        
+    </main>
+    </div>
+</div>
+<%- include('./layout/footer.ejs') %>
+<script src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
+
+<script>
+
+
+
+function list(){
+  let categoryElement=document.querySelector("#table_body")
+$.ajax({
+  method: "GET",
+  url: "http://localhost:4000/tutorials/getAllTutorials",
+})
+  .done(function( data ) {
+    categoryElement.innerHTML=""
+    data.data.forEach((element,index) => {
+        categoryElement.innerHTML+= ` <tr>
+          <td>${index+1}</td>
+            <td>${element.title}</td>
+            <td><a href='/admin/edit-tutorial/${element._id}' class='mx-3'>Edit</a><a href='javascript:void(0)' onclick="deleteATutorial('${element._id}')" class='mx-3'>Delete</a></td>
+      </tr>` 
+    });
+    $('#Table_ID').DataTable();
+
+  });
+}
+
+list()
+
+
+function deleteATutorial(id){
+  $.ajax({
+  method: "DELETE",
+  url: base_url+"/tutorials/"+id,
+})
+  .done(function( data ) {
+
+    $.toast({
+            heading: 'Success',
+            text: 'Deleted Successfully',
+            showHideTransition: 'slide',
+            icon: 'success',
+            stack: 2
+          })
+         setTimeout(() => {
+          list()
+         }, 200);
+  });
+}
+
+
+
+</script>
+

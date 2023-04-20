@@ -14,40 +14,49 @@
     <div>
         <%- include('./layout/navigation.ejs') %>
         <main class="p-3 main-content pb-5">
-            <h1>Add Documentations</h1>
+             <h1>Edit Tutorial</h1>
         
         <form action="" id="docs_form" class="pb-5">
             <div class="form-floating input-group  mt-3">
-                <input type="text" class="form-control" id="floatingInput1" name="title" placeholder="Your Name">
+                <input type="text" class="form-control" id="floatingInput1" value="<%= data.title %>" name="title" placeholder="Your Name">
                 <label for="floatingInput1">Title</label>
             </div>
 
             <div class="form-floating input-group  mt-3">
-                <input type="text" class="form-control" id="floatingInput2" name="type" placeholder="name@example.com">
-                <label for="floatingInput2">Type of Documentation</label>
+                <label for="category-data">Tutorial Category</label>
+
+                <select name="tutorialCategory" value="<%= data.tutorialCategory %>" class="form-control form-select" id="category-data">
+                    <option value="">Select Category</option>
+                </select>
+            </div>
+
+            <div class="form-floating input-group  mt-3">
+                <input type="text" class="form-control" value="<%= data.topicName %>" id="floatingInput3" name="topicName" placeholder="name@example.com">
+                <label for="floatingInput3">Topic Name</label>
             </div>
             <div class=" mt-3 input-group ">
-                <select class="form-control py-4 js-example-tokenizer" name="tags" multiple="multiple">
-                    <option value="">Add Tags</option>
+                <select class="form-control py-4 js-example-tokenizer" data-init-text="bla bla" value="bla bla"  name="keywords[]" multiple="multiple">
+                    <option value=" ">Add Tags</option>
+                    <% data.keywords.forEach(element => { %>
+                        <option value="<%- element  %>"><%- element  %></option>
+                    <% }) %>
 
                   </select>
-            </div>
-            <div class="form-group my-4">
-                <div class="file-loading">
-                    <input id="file-1" name="image" type="file" multiple class="file" data-overwrite-initial="false" data-min-file-count="2">
-                </div>
-            </div>
+            </div> 
+        
            
-            <textarea name="content" class="input-group" id="div_editor1" >
-                <p>Hello world!</p>
-                <p><img src='images/editor-image.png' /></p>
-            </textarea>
+            <div class="form-floating input-group  mt-3">
+                <textarea name="content" name="content" class="input-group" id="div_editor1" >
+                    
+                </textarea>
+            </div>
             <div class="mt-3">
                 <button type="submit" class="button-2 py-2 px-3 submit">Save</button>
             </div>
         </form>
     </main>
     </div>
+     
 </div>
 <%- include('./layout/footer.ejs') %>
 <script type="text/javascript" src="/js/rte.js"></script>
@@ -70,7 +79,12 @@
 <script>
     var editor1 = new RichTextEditor("#div_editor1");
     $(".js-example-tokenizer").select2({
+        name:'content',
     tags: true,
+    insertTag: function (data, tag) {
+    // Insert the tag at the end of the results
+    data.push("<%= data.keywords %>");
+  },
     tokenSeparators: [',', ' '],
     placeholder: "Add Tags",
     allowClear: true
@@ -102,34 +116,26 @@ $("#docs_form").validate({
     rules: {
       title: {
         maxlength: 150,
-        required: {
+        required: !0
 
-          depends: function () {
-            $(this).val($.trim($(this).val()));
-            return true;
-          }
-        },
       },
-      type: {
+      tutorialCategory: {
         maxlength: 150,
-        required: {
-          depends: function () {
-            $(this).val($.trim($(this).val()));
-            return true;
-          }
-        },
+        required: !0
+
       },
-      tags: {
-        required: {
-          depends: function () {
-            $(this).val($.trim($(this).val()));
-            return true;
-          }
+      topicName: {
+        required: !0
+
+      }, "keywords[]": {
+        required: !0,
+        normalizer: function (value) {
+          return $.trim(value);
         }
       },
      
 
-      image: {
+      content: {
         required: !0,
         normalizer: function (value) {
           return $.trim(value);
@@ -163,30 +169,29 @@ $("#docs_form").validate({
     submitHandler: function (form,event) {
      event.preventDefault()
      const formData = new FormData(event.target);
-     console.log({
-          
-          image:formData.get('image')
-
-        })
+   
       $.ajax({
-        method: "POST",
-        url: base_url+"/documentation/",
+        method: "PUT",
+        url: base_url+"/tutorials/<%= data._id %>",
         data: {
-          title:formData.get("title"),
-          type: formData.get("type"),
-          tags:formData.get('tags'),
+            title:formData.get("title"),
+            tutorialCategory: formData.get("tutorialCategory"),
+          topicName:formData.get('topicName'),
+          keywords:JSON.stringify($(".js-example-tokenizer").val()),
           content:formData.get('content'),
-          image:formData.get('image')
-
         },
         success: function (data) {
           $.toast({
             heading: 'Success',
-            text: `Your Query Submitted Successfully. Our Team will reach to you soon !!!`,
+            text: `Tutorials Updated Successfully!`,
             showHideTransition: 'slide',
             icon: 'success',
             stack: 2
           })
+          $('#docs_form').trigger("reset");
+          setTimeout(() => {
+            window.location.href="/admin/list-tutorials"
+          }, 2000);
         },
         error: function (xhr, exception) {
           $.toast({
@@ -203,6 +208,30 @@ $("#docs_form").validate({
     }
 
   });
+
+
+
+
+  //get tut categories
+
+
+  let categoryElement=document.querySelector("#category-data")
+$.ajax({
+  method: "GET",
+  url: base_url+"/tutorials/getAllTutsCat",
+})
+  .done(function( data ) {
+    
+    data.data.forEach(element => {
+        console.log(element);
+        categoryElement.innerHTML+= `<option value='${element.title}'>${element.title}</option>` 
+    });
+  });
+
+
+  
+ 
+
 
 
 </script>
